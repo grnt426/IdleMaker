@@ -1,11 +1,13 @@
 window.onload = function(){
-	progressJs("#progressme").start();
-	progressMe("#progressme", 50, 1000);
+	var bar = new ProgressBar("#progressme", 50, 1, function(){console.log("Done!")});
+	activeProgressBars.push(bar);
+	setInterval(progressEverything, 100);
 };
 
-function progressMe(element, i, delay){
-	progressJs(element).increase();
-	setTimeout(function(){
-		progressMe(element, i + 1, delay);
-	}, delay);
+activeProgressBars = [];
+
+function progressEverything(){
+	for(var i in activeProgressBars){
+		activeProgressBars[i].increment();
+	}
 }
