@@ -46,11 +46,30 @@ function createCompany(){
 	var hireDevs = new ProgressBar("#hireDevs", 60, 1, defaultProgressFinished);
 	var managerStuff = new ProgressBar("#managerStuff", 40, 1, defaultProgressFinished);
 	var creatingCompany = new CompoundProgress("#creatingCompany",
-		[prepareLegal, hireDevs, managerStuff], defaultProgressFinished);
+		[prepareLegal, hireDevs, managerStuff], createFirstVersion);
 	newProgressBars.push(prepareLegal);
 	newProgressBars.push(hireDevs);
 	newProgressBars.push(managerStuff);
 	newProgressBars.push(creatingCompany);
 	finishedProgressBars.push("#gatherbits");
 	finishedProgressBars.push("#gatherbytes");
+}
+
+function createFirstVersion(){
+	var architectMarvels = new ProgressBar("#architectMarvels", 300, 1, defaultProgressFinished);
+	var designProgress = new ProgressBar("#designProgress", 70, 1, defaultProgressFinished);
+	var removeInteractivity = new ProgressBar("#removeInteractivity", 90, 1, defaultProgressFinished);
+	var makeCommits = new ProgressBar("#makeCommits", 50, 1, defaultProgressFinished);
+	var testCode = new ProgressBar("#testCode", 20, 1, defaultProgressFinished);
+	var appearanceOfProgression = new ProgressBar("#appearanceOfProgression", 75, 1, defaultProgressFinished);
+	var createQuestionable = new ProgressBar("#createQuestionable", 10, 1, defaultProgressFinished);
+	var loadingScreensLonger = new ProgressBar("#loadingScreensLonger", 150, 1, defaultProgressFinished);
+	var addUnnecessaryLoading = new ProgressBar("#addUnnecessaryLoading", 200, 1, defaultProgressFinished);
+	var createFirstVersion = new CompoundProgress("#createFirstVersion",
+			[addUnnecessaryLoading, createQuestionable, loadingScreensLonger, appearanceOfProgression,
+				testCode, makeCommits, removeInteractivity, designProgress, architectMarvels], defaultProgressFinished);
+	newProgressBars.push(architectMarvels, designProgress, removeInteractivity, makeCommits,
+		testCode, appearanceOfProgression, loadingScreensLonger, createQuestionable, addUnnecessaryLoading,
+		createFirstVersion);
+	finishedProgressBars.push("#prepareLegal", "#hireDevs", "#creatingCompany", "#managerStuff");
 }
