@@ -3,7 +3,7 @@ ProgressBar = function(element, max, amount, callback){
 	this.element = element;
 	this.max = max;
 	this.amount = amount;
-	this.current = 1;
+	this.current = 0;
 	this.callback = callback;
 	this.finished = false;
 
@@ -13,8 +13,8 @@ ProgressBar = function(element, max, amount, callback){
 		if(this.finished)
 			return;
 		this.current = this.current + this.amount;
-		progressJs(element).increase(this.amount);
-		if(this.current == this.max){
+		progressJs(element).set(Math.floor(this.current / this.max * 100));
+		if(this.current >= this.max){
 			this.finished = true;
 			this.callback();
 		}

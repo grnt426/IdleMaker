@@ -1,5 +1,5 @@
 window.onload = function(){
-	var bar = new ProgressBar("#progressme", 50, 1, function(){console.log("Done!")});
+	var bar = new ProgressBar("#progressme", 500, 10, function(){console.log("Done!")});
 	activeProgressBars.push(bar);
 	setInterval(progressEverything, 100);
 };
