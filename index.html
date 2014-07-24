@@ -5,13 +5,24 @@
 <script src="js/idle.js"></script>
 <script src='js/progress.js'></script>
 <script src='js/progressBar.js'></script>
+<script src='js/compoundProgress.js'></script>
 <link rel='stylesheet' href='css/progressjs.css'/>
 <div id="gameworld">
 
 <div id="startupProgress" style="float:left;width:300px;border-style:dashed;border-width:1px;padding:5px">
-	<b>Starting Game...</b><br>
+	<b>Starting Game</b><br />
 	Idling...<div class="progressjs-progress progressstuff" id="progressme" ></div>
 	Gathering Bits...<div class="progressjs-progress progressstuff" id="gatherbits" ></div>
 	Gathering Bytes...<div class="progressjs-progress progressstuff" id="gatherbytes" ></div>
 </div>
+
+<div id="createCompany" style="float:left;width:300px;border-style:dashed;border-width:1px;padding:5px">
+	<b>Creating Company</b><div class="progressjs-progress progressstuff" id="creatingCompany" ></div>
+	Preparing Legal Documents...<div class="progressjs-progress progressstuff" id="prepareLegal" ></div>
+	Hiring Developers...<div class="progressjs-progress progressstuff" id="hireDevs" ></div>
+	"Manager Stuff"...<div class="progressjs-progress progressstuff" id="managerStuff" ></div>
+</div>
+
+
+
 </div>

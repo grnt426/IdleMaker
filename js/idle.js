@@ -1,7 +1,7 @@
 window.onload = function(){
-	var bar = new ProgressBar("#progressme", 10, 1, startGame);
+	var bar = new ProgressBar("#progressme", 20, 1, prepareGame);
 	newProgressBars.push(bar);
-	setInterval(progressEverything, 500);
+	setInterval(progressEverything, 150);
 };
 
 var newProgressBars = [];
@@ -33,10 +33,24 @@ function defaultProgressFinished(){
 	console.log("Finished");
 }
 
-function startGame(){
-	var bits = new ProgressBar("#gatherbits", 10, 1, defaultProgressFinished);
-	var bytes = new ProgressBar("#gatherbytes", 80, 1, defaultProgressFinished);
+function prepareGame(){
+	var bits = new ProgressBar("#gatherbits", 20, 1, defaultProgressFinished);
+	var bytes = new ProgressBar("#gatherbytes", 80, 1, createCompany);
 	newProgressBars.push(bits);
 	newProgressBars.push(bytes);
 	finishedProgressBars.push("#progressme");
+}
+
+function createCompany(){
+	var prepareLegal = new ProgressBar("#prepareLegal", 100, 1, defaultProgressFinished);
+	var hireDevs = new ProgressBar("#hireDevs", 60, 1, defaultProgressFinished);
+	var managerStuff = new ProgressBar("#managerStuff", 40, 1, defaultProgressFinished);
+	var creatingCompany = new CompoundProgress("#creatingCompany",
+		[prepareLegal, hireDevs, managerStuff], defaultProgressFinished);
+	newProgressBars.push(prepareLegal);
+	newProgressBars.push(hireDevs);
+	newProgressBars.push(managerStuff);
+	newProgressBars.push(creatingCompany);
+	finishedProgressBars.push("#gatherbits");
+	finishedProgressBars.push("#gatherbytes");
 }
