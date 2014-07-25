@@ -8,23 +8,32 @@
 <script src='js/compoundProgress.js'></script>
 <link rel='stylesheet' href='css/progressjs.css'/>
 <div id="gameworld">
+<table id="statsTable" width=600px" style="visibility:hidden">
+	<tr>
+		<th>Customers</th>
+		<th>Length of Game</th>
+	</tr>
+	<tr style="text-align: center">
+		<td>0</td>
+		<td>0</td>
+	</tr>
+</table>
 
-Customers:<div id="customerCount">0</div> Length of Game:<div id="lengthOfGame">0</div>
-<div id="startupProgress" style="float:left;width:300px;border-style:dashed;border-width:1px;padding:5px;margin:5px">
+<div id="startupProgress" class="progressGroups">
 	<b>Starting Game</b><br />
 	Idling...<div class="progressjs-progress progressstuff" id="progressme" ></div>
 	Gathering Bits...<div class="progressjs-progress progressstuff" id="gatherbits" ></div>
 	Gathering Bytes...<div class="progressjs-progress progressstuff" id="gatherbytes" ></div>
 </div>
 
-<div id="createCompany" style="float:left;width:300px;border-style:dashed;border-width:1px;padding:5px;margin:5px">
+<div id="createCompany" class="progressGroups" style="visibility:hidden">
 	<b>Creating Company</b><div class="progressjs-progress progressstuff" id="creatingCompany" ></div>
 	Preparing Legal Documents...<div class="progressjs-progress progressstuff" id="prepareLegal" ></div>
 	Hiring A Developer...<div class="progressjs-progress progressstuff" id="hireDevs" ></div>
 	"Manager Stuff"...<div class="progressjs-progress progressstuff" id="managerStuff" ></div>
 </div>
 
-<div id="makeFirstVersion" style="float:left;width:300px;border-style:dashed;border-width:1px;padding:5px;margin:5px">
+<div id="makeFirstVersion" class="progressGroups" style="visibility:hidden">
 	<b>Creating First Version</b><div class="progressjs-progress progressstuff" id="createFirstVersion" ></div>
 	Designing Progress Bars...<div class="progressjs-progress progressstuff" id="designProgress" ></div>
 	Architecting Marvels...<div class="progressjs-progress progressstuff" id="architectMarvels" ></div>

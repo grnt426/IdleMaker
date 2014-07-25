@@ -42,6 +42,7 @@ function prepareGame(){
 }
 
 function createCompany(){
+	showIt("createCompany");
 	var prepareLegal = new ProgressBar("#prepareLegal", 100, 1, defaultProgressFinished);
 	var hireDevs = new ProgressBar("#hireDevs", 60, 1, defaultProgressFinished);
 	var managerStuff = new ProgressBar("#managerStuff", 40, 1, defaultProgressFinished);
@@ -56,6 +57,8 @@ function createCompany(){
 }
 
 function createFirstVersion(){
+	showIt("makeFirstVersion");
+	showIt("statsTable");
 	var architectMarvels = new ProgressBar("#architectMarvels", 300, 1, defaultProgressFinished);
 	var designProgress = new ProgressBar("#designProgress", 70, 1, defaultProgressFinished);
 	var removeInteractivity = new ProgressBar("#removeInteractivity", 90, 1, defaultProgressFinished);
@@ -72,4 +75,9 @@ function createFirstVersion(){
 		testCode, appearanceOfProgression, loadingScreensLonger, createQuestionable, addUnnecessaryLoading,
 		createFirstVersion);
 	finishedProgressBars.push("#prepareLegal", "#hireDevs", "#creatingCompany", "#managerStuff");
+}
+
+function showIt(element){
+	var ele = document.getElementById(element);
+	ele.style.visibility = "visible";
 }

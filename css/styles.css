@@ -1,3 +1,8 @@
-.progressstuff .progress-inner{
-
+.progressGroups {
+	float:left;
+	width:300px;
+	border-style:dashed;
+	border-width:1px;
+	padding:5px;
+	margin:5px
 }
