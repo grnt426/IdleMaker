@@ -1,5 +1,6 @@
 window.onload = function(){
 	var bar = new ProgressBar("#progressme", 20, 1, prepareGame);
+	bar.setLooping();
 	newProgressBars.push(bar);
 	setInterval(progressEverything, 150);
 };
@@ -34,11 +35,17 @@ function defaultProgressFinished(){
 }
 
 function prepareGame(){
+
+	// Dirty hack to prevent the looping progress bar from calling this multiple
+	// times.
+	if(Object.keys(activeProgressBars).length > 1)
+		return;
+
+
 	var bits = new ProgressBar("#gatherbits", 20, 1, defaultProgressFinished);
 	var bytes = new ProgressBar("#gatherbytes", 80, 1, createCompany);
 	newProgressBars.push(bits);
 	newProgressBars.push(bytes);
-	finishedProgressBars.push("#progressme");
 }
 
 function createCompany(){
@@ -77,6 +84,7 @@ function createFirstVersion(){
 	finishedProgressBars.push("#prepareLegal", "#hireDevs", "#creatingCompany", "#managerStuff");
 }
 
+// TODO: replace with JQuery before this gets ugly
 function showIt(element){
 	var ele = document.getElementById(element);
 	ele.style.visibility = "visible";

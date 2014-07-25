@@ -7,6 +7,8 @@ ProgressBar = function(element, max, amount, callback){
 	this.callback = callback;
 	this.finished = false;
 	this.running = true;
+	this.loop = false;
+	this.iterations = 0;
 
 	progressJs(element).start();
 
@@ -16,7 +18,14 @@ ProgressBar = function(element, max, amount, callback){
 		this.current = this.current + this.amount;
 		progressJs(element).set(this.current / this.max * 100);
 		if(this.current >= this.max){
-			this.finished = true;
+			if(this.loop){
+				progressJs(element).set(0);
+				this.current = 0;
+			}
+			else{
+				this.finished = true;
+			}
+			this.iterations += 1;
 			this.callback();
 		}
 	};
@@ -27,5 +36,9 @@ ProgressBar = function(element, max, amount, callback){
 
 	this.start = function(){
 		this.running = true;
+	};
+
+	this.setLooping = function(){
+		this.loop = true;
 	};
 };
