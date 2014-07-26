@@ -9,6 +9,16 @@ var newProgressBars = [];
 var activeProgressBars = {};
 var finishedProgressBars = [];
 
+var customers = 0;
+var lengthOfGame = 0;
+var lengthOfGameUnit = "s";
+var money = 0;
+
+/**
+ * To make sure everything is synced up and happens on regular ticks,
+ * queues are maintained to ensure that progress bars are only added
+ * at the start of a tick, and only removed at the end.
+ */
 function progressEverything(){
 
 	for(var n in newProgressBars){
@@ -28,6 +38,8 @@ function progressEverything(){
 	while(finishedProgressBars.length > 0) {
 		finishedProgressBars.pop();
 	}
+
+	updateStats();
 }
 
 function defaultProgressFinished(){
@@ -41,18 +53,20 @@ function prepareGame(){
 	if(Object.keys(activeProgressBars).length > 1)
 		return;
 
-
-	var bits = new ProgressBar("#gatherbits", 20, 1, defaultProgressFinished);
-	var bytes = new ProgressBar("#gatherbytes", 80, 1, createCompany);
+	var findCustomersAction = new ProgressBar("#findCustomersProgress", 10, 1, addCustomer);
+	findCustomersAction.setLooping();
+	newProgressBars.push(findCustomersAction);
+	var bits = new ProgressBar("#gatherbits", 2, 1, defaultProgressFinished);
+	var bytes = new ProgressBar("#gatherbytes", 8, 1, createCompany);
 	newProgressBars.push(bits);
 	newProgressBars.push(bytes);
 }
 
 function createCompany(){
 	showIt("createCompany");
-	var prepareLegal = new ProgressBar("#prepareLegal", 100, 1, defaultProgressFinished);
-	var hireDevs = new ProgressBar("#hireDevs", 60, 1, defaultProgressFinished);
-	var managerStuff = new ProgressBar("#managerStuff", 40, 1, defaultProgressFinished);
+	var prepareLegal = new ProgressBar("#prepareLegal", 10, 1, defaultProgressFinished);
+	var hireDevs = new ProgressBar("#hireDevs", 6, 1, defaultProgressFinished);
+	var managerStuff = new ProgressBar("#managerStuff", 4, 1, defaultProgressFinished);
 	var creatingCompany = new CompoundProgress("#creatingCompany",
 		[prepareLegal, hireDevs, managerStuff], createFirstVersion);
 	newProgressBars.push(prepareLegal);
@@ -77,11 +91,29 @@ function createFirstVersion(){
 	var addUnnecessaryLoading = new ProgressBar("#addUnnecessaryLoading", 200, 1, defaultProgressFinished);
 	var createFirstVersion = new CompoundProgress("#createFirstVersion",
 			[addUnnecessaryLoading, createQuestionable, loadingScreensLonger, appearanceOfProgression,
-				testCode, makeCommits, removeInteractivity, designProgress, architectMarvels], defaultProgressFinished);
+				testCode, makeCommits, removeInteractivity, designProgress, architectMarvels], beginRealGame);
 	newProgressBars.push(architectMarvels, designProgress, removeInteractivity, makeCommits,
 		testCode, appearanceOfProgression, loadingScreensLonger, createQuestionable, addUnnecessaryLoading,
 		createFirstVersion);
 	finishedProgressBars.push("#prepareLegal", "#hireDevs", "#creatingCompany", "#managerStuff");
+}
+
+function beginRealGame(){
+	finishedProgressBars.push("#architectMarvels", "#designProgress", "#removeInteractivity",
+		"#makeCommits", "#testCode", "#createQuestionable", "#loadingScreensLonger",
+		"#addUnnecessaryLoading", "#appearanceOfProgression", "#createFirstVersion");
+}
+
+function addCustomer(){
+	customers += 1;
+	money += 1;
+}
+
+function updateStats(){
+	var customerCount = document.getElementById("customerCount");
+	customerCount.innerHTML = customers;
+	var moneyCount = document.getElementById("moneyCount");
+	moneyCount.innerHTML = money;
 }
 
 // TODO: replace with JQuery before this gets ugly
