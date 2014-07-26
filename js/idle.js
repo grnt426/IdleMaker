@@ -3,6 +3,8 @@ window.onload = function(){
 	bar.setLooping();
 	newProgressBars.push(bar);
 	setInterval(progressEverything, 150);
+	progressJs("#devProgressBar").start();
+	progressJs("#devProgressBar").set(1);
 };
 
 var newProgressBars = [];
